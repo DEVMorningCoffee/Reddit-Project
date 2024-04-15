@@ -1,16 +1,15 @@
 import com.beust.ah.A;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
-import java.util.List;
 
-public class Comment extends Post{
+public class Comment extends Post {
 
     @Test
     public void writeAComment() throws InterruptedException {
@@ -28,7 +27,7 @@ public class Comment extends Post{
         submitCommentButton.click();
     }
 
-//    @Test(priority = 1)
+    @Test(priority = 1)
     public void replyToComment() throws InterruptedException {
         Thread.sleep(2000);
 
@@ -44,71 +43,65 @@ public class Comment extends Post{
         submitCommentButton.click();
     }
 
-    @Test(priority = 2)
-    public void removeUpVoteComment() throws InterruptedException{
+    @Test(priority = 1)
+    public void saveComment() throws InterruptedException {
         Thread.sleep(2000);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        Thread.sleep(2000);
 
-        WebElement upVoteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/shreddit-app/dsa-transparency-modal-provider/report-flow-provider/div/main/div/shreddit-comment-tree/shreddit-comment/shreddit-comment-action-row//div/div/span/button[1]")));
-        upVoteButton.click();
+        WebElement menu = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/shreddit-app/dsa-transparency-modal-provider/report-flow-provider/div/main/div/shreddit-comment-tree/shreddit-comment/shreddit-comment-action-row/shreddit-overflow-menu")));
+        menu.click();
+        Thread.sleep(2000);
+        menu.sendKeys(Keys.DOWN);
+        menu.sendKeys(Keys.RETURN);
+    }
+
+    @Test(priority = 2)
+    public void removeSaveComment() throws InterruptedException{
+        Thread.sleep(2000);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        Thread.sleep(2000);
+
+        WebElement menu = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/shreddit-app/dsa-transparency-modal-provider/report-flow-provider/div/main/div/shreddit-comment-tree/shreddit-comment/shreddit-comment-action-row/shreddit-overflow-menu")));
+        menu.click();
+        Thread.sleep(2000);
+        menu.sendKeys(Keys.RETURN);
     }
 
     @Test(priority = 3)
-    public void downVoteComment() throws  InterruptedException{
-        Thread.sleep(2000);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        System.out.println(By.xpath("/html/body/shreddit-app/dsa-transparency-modal-provider/report-flow-provider/div/main/div/shreddit-comment-tree/shreddit-comment/shreddit-comment-action-row//div/div/span/button[2]"));
-        WebElement downVoteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/shreddit-app/dsa-transparency-modal-provider/report-flow-provider/div/main/div/shreddit-comment-tree/shreddit-comment/shreddit-comment-action-row//div/div/span/button[2]")));
-        downVoteButton.click();
-    }
-
-
-//    @Test(priority = 3)
     public void editComment() throws InterruptedException{
         Thread.sleep(2000);
         wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         Thread.sleep(2000);
 
-        Actions actions = new Actions(driver);
-
         WebElement menu = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/shreddit-app/dsa-transparency-modal-provider/report-flow-provider/div/main/div/shreddit-comment-tree/shreddit-comment/shreddit-comment-action-row/shreddit-overflow-menu")));
         menu.click();
+        Thread.sleep(2000);
+        menu.sendKeys(Keys.UP);
+        menu.sendKeys(Keys.RETURN);
 
-        List<WebElement> menuOptions = driver.findElements(By.xpath("/html/body/shreddit-app/dsa-transparency-modal-provider/report-flow-provider/div/main/div/shreddit-comment-tree/shreddit-comment/shreddit-comment-action-row/shreddit-overflow-menu//faceplate-dropdown-menu/faceplate-menu/faceplate-tracker[1]"));
-        menuOptions.get(0).click();
-
-        WebElement editButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/faceplate-dropdown-menu/faceplate-menu/faceplate-tracker[2]/li/div")));
-        actions.click(editButton).perform();
-
-
-
-        WebElement inputBox = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/shreddit-app/dsa-transparency-modal-provider/report-flow-provider/div/main/div/shreddit-comment-tree/shreddit-comment/shreddit-comment-action-row/shreddit-async-loader/comment-composer-host/faceplate-form/shreddit-composer/div/p")));
-        inputBox.clear();
+        WebElement inputBox = driver.switchTo().activeElement();
+        inputBox.sendKeys(Keys.DELETE);
         inputBox.sendKeys("Integer eget aliquet nibh praesent. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui. Neque laoreet suspendisse interdum consectetur libero id. Dui ut ornare lectus sit amet est.");
 
         WebElement submitEditCommentButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/shreddit-app/dsa-transparency-modal-provider/report-flow-provider/div/main/div/shreddit-comment-tree/shreddit-comment/div[4]/shreddit-async-loader/comment-composer-host/faceplate-form/shreddit-composer/button[2]")));
         submitEditCommentButton.click();
-
-        returnHomeToPage();
     }
 
-    //    @Test(priority = 2)
-    public void deleteComment() throws InterruptedException {
+    @Test(priority = 4)
+    public void removeComment() throws InterruptedException{
         Thread.sleep(2000);
         wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         Thread.sleep(2000);
 
-        Actions actions = new Actions(driver);
-
         WebElement menu = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/shreddit-app/dsa-transparency-modal-provider/report-flow-provider/div/main/div/shreddit-comment-tree/shreddit-comment/shreddit-comment-action-row/shreddit-overflow-menu")));
         menu.click();
+        Thread.sleep(2000);
+        menu.sendKeys(Keys.DOWN);
+        menu.sendKeys(Keys.DOWN);
+        menu.sendKeys(Keys.RETURN);
 
-        WebElement deleteCommentButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/shreddit-app/dsa-transparency-modal-provider/report-flow-provider/div/main/div/shreddit-comment-tree/shreddit-comment/shreddit-comment/shreddit-comment-action-row/shreddit-overflow-menu//faceplate-dropdown-menu/faceplate-menu/faceplate-tracker[2]")));
-        actions.click(deleteCommentButton).perform();
-
-        WebElement submitDeleteCommentButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/shreddit-app/shreddit-comment-deletion-modal//faceplate-modal/button[1]")));
-        submitDeleteCommentButton.click();
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.TAB).perform();
     }
-
 }
