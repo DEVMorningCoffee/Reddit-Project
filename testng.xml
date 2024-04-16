@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/Jeffr/IdeaProjects/Reddit_Project/src/test/java/Setup.java">
+        <classes>
+            <class name="Account"></class>
+            <class name="DarkMode"></class>
+            <class name="Post"></class>
+            <class name="Comment"></class>
+            <class name="Notification"></class>
+            <class name="Profile"></class>
+            <class name="Setting"></class>
+            <class name="Article"></class>
+            <class name="Logout"></class>
+        </classes>
+    </test>
+</suite>

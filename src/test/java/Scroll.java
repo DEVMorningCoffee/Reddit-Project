@@ -5,12 +5,13 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class Scroll extends Account{
+public class Scroll extends Setup{
     @Test
-    public void navigateLinks(){
-        for(int i=0;i<6000;i++) {
+    public void scrollPage(){
+        for(int i=0;i<3000;i++) {
             ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,1)", "");
         }
+        returnToHomeToPage();
     }
 
 }

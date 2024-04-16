@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class Post extends Account {
+public class Post extends Setup {
 
 
     @Test
@@ -16,7 +16,6 @@ public class Post extends Account {
         Thread.sleep(2000);
 
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        // Scroll to the "Load More" btn and make sure it's in the user view
 
         WebElement createPostLink = wait.until(ExpectedConditions.elementToBeClickable(By.id("create-post")));
         createPostLink.click();
@@ -39,10 +38,10 @@ public class Post extends Account {
         WebElement submit = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[1]/div/div[2]/div[2]/div/div/div/div[2]/div[3]/div[1]/div[2]/div[3]/div[3]/div[2]/div/div/div[1]/button")));
         submit.click();
 
-//        returnHomeToPage();
+        returnToHomeToPage();
     }
 
-//    @Test(priority = 1)
+    @Test(priority = 1)
     public void createPostWithOCTag() throws InterruptedException {
         Thread.sleep(2000);
 
@@ -73,10 +72,10 @@ public class Post extends Account {
         WebElement submit = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[1]/div/div[2]/div[2]/div/div/div/div[2]/div[3]/div[1]/div[2]/div[3]/div[3]/div[2]/div/div/div[1]/button")));
         submit.click();
 
-        returnHomeToPage();
+        returnToHomeToPage();
     }
 
-//    @Test(priority = 2)
+    @Test(priority = 2)
     public void createPostWithSpoilerTag() throws InterruptedException {
         Thread.sleep(2000);
 
@@ -107,10 +106,10 @@ public class Post extends Account {
         WebElement submit = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[1]/div/div[2]/div[2]/div/div/div/div[2]/div[3]/div[1]/div[2]/div[3]/div[3]/div[2]/div/div/div[1]/button")));
         submit.click();
 
-        returnHomeToPage();
+        returnToHomeToPage();
     }
 
-//    @Test(priority = 3)
+    @Test(priority = 3)
     public void createPostWithNSFWTag() throws InterruptedException {
         Thread.sleep(2000);
 
@@ -140,10 +139,10 @@ public class Post extends Account {
 
         WebElement submit = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[1]/div/div[2]/div[2]/div/div/div/div[2]/div[3]/div[1]/div[2]/div[3]/div[3]/div[2]/div/div/div[1]/button")));
         submit.click();
-        returnHomeToPage();
+        returnToHomeToPage();
     }
 
-//    @Test(priority = 4)
+    @Test(priority = 4)
     public void createPostWithAllTag() throws InterruptedException {
         Thread.sleep(2000);
 

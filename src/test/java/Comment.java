@@ -1,4 +1,3 @@
-import com.beust.ah.A;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -9,7 +8,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class Comment extends Post {
+public class Comment extends Setup {
 
     @Test
     public void writeAComment() throws InterruptedException {
@@ -43,7 +42,7 @@ public class Comment extends Post {
         submitCommentButton.click();
     }
 
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void saveComment() throws InterruptedException {
         Thread.sleep(2000);
         wait = new WebDriverWait(driver, Duration.ofSeconds(2));
@@ -56,7 +55,7 @@ public class Comment extends Post {
         menu.sendKeys(Keys.RETURN);
     }
 
-    @Test(priority = 2)
+    @Test(priority = 3)
     public void removeSaveComment() throws InterruptedException{
         Thread.sleep(2000);
         wait = new WebDriverWait(driver, Duration.ofSeconds(2));
@@ -68,7 +67,7 @@ public class Comment extends Post {
         menu.sendKeys(Keys.RETURN);
     }
 
-    @Test(priority = 3)
+    @Test(priority = 4)
     public void editComment() throws InterruptedException{
         Thread.sleep(2000);
         wait = new WebDriverWait(driver, Duration.ofSeconds(2));
@@ -88,7 +87,7 @@ public class Comment extends Post {
         submitEditCommentButton.click();
     }
 
-    @Test(priority = 4)
+    @Test(priority = 5)
     public void removeComment() throws InterruptedException{
         Thread.sleep(2000);
         wait = new WebDriverWait(driver, Duration.ofSeconds(2));
@@ -103,5 +102,7 @@ public class Comment extends Post {
 
         Actions actions = new Actions(driver);
         actions.sendKeys(Keys.TAB).perform();
+
+        returnToHomeToPage();
     }
 }

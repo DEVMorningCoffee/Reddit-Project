@@ -1,38 +1,13 @@
-import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class Account {
-    private final String APP_URL = "https://www.reddit.com";
-    public WebDriver driver;
-    public WebDriverWait wait;
-
-    public void returnHomeToPage(){
-        driver.navigate().to("https://www.reddit.com");
-    }
-
-    @BeforeTest
-    public void launchBrowser(){
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--disable-notifications");
-
-        System.out.println("Launching Browser");
-        driver = new ChromeDriver(chromeOptions);
-        driver.get(APP_URL);
-        driver.manage().window().maximize();
-    }
+public class Account extends Setup{
 
     @Test
     public void EnterInvalidLoginKey(){
@@ -62,7 +37,7 @@ public class Account {
     }
 
     @Test
-    public void EnterValidLoginKey(){
+    public void EnterValidLoginKey() throws InterruptedException {
         try{
             String password = "!d5&B7t4}3mU)Tx";
             wait = new WebDriverWait(driver, Duration.ofSeconds(2));
@@ -75,9 +50,10 @@ public class Account {
             System.out.println(e.getMessage());
         }
 
+        Thread.sleep(5000);
     }
 
-//    @Test(priority = 2)
+    //    @Test(priority = 2)
     public void sendMessage() throws InterruptedException {
         wait = new WebDriverWait(driver, Duration.ofSeconds(50));
         Thread.sleep(2000);
